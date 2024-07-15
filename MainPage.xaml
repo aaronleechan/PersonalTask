@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PersonalTask.MainPage">
+
+    <VerticalStackLayout>
+
+        <Frame BackgroundColor="grey">
+            <VerticalStackLayout Spacing="10" >
+                <Entry  x:Name="nameEntryField"  Placeholder="Name" />
+                <!-- <Entry  x:Name="setsEntryField"  Placeholder="Set" Keyboard="Numeric"  /> -->
+                <Button Text="Save" Clicked="saveAcionButtonClick" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Show Timer Count Down -->
+        <VerticalStackLayout Spacing="100" Padding="10" >
+            <Label x:Name="timerlabel"  FontSize="50" VerticalOptions="Center" HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+
+        <ListView x:Name="listView" FlexLayout.Grow="1" HasUnevenRows="True" ItemTapped="listView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <VerticalStackLayout Padding="5">
+                            <Grid Margin="20" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label  Text="{Binding Name}" FontSize="17" FontAttributes="Bold" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <Button x:Name="btnStartTimer" Text="Play" CommandParameter="{Binding .}" Clicked="OnPlayButtonClicked"  FontSize="15" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Grid.Column="0"  Text="{Binding Sets}" FontSize="10"/>
+                                <Label Grid.Column="1"  Text="{Binding CompletedDate}" FontSize="10"/>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
